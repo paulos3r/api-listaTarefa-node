@@ -3,19 +3,16 @@ import path from 'path';
 import dotenv from 'dotenv';
 import ApiRouter from './router/api';
 import cors from 'cors';
-import bodyParser from 'body-parser'
 
 dotenv.config();
+
 const server = express();
 
 server.use(cors({
     origin: '*'
 }));
-
-server.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-server.use(bodyParser.json())
+//resgatar json vindo do corpo da requisição
+server.use(express.json())
 
 server.use(express.static(path.join(__dirname, '../public')));
 
